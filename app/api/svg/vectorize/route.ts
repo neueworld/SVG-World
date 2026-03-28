@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
   const formData = await req.formData()
   const file = formData.get('image')
 
-  if (!file || !(file instanceof Blob)) {
+  if (!file || typeof file === 'string') {
     return new Response('Missing image file', { status: 400 })
   }
 
