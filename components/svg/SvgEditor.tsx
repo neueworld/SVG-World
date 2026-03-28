@@ -5,6 +5,7 @@ import SvgToolbar from './SvgToolbar'
 import SvgLayerPanel from './SvgLayerPanel'
 import SvgPreview from './SvgPreview'
 import { parseSvgLayers, sanitizeSvg, type SvgLayer } from '@/lib/svg-parser'
+import type { SvgStyle } from '@/lib/claude-svg'
 
 export default function SvgEditor() {
   const [prompt, setPrompt] = useState('')
@@ -13,6 +14,7 @@ export default function SvgEditor() {
   const [layers, setLayers] = useState<SvgLayer[]>([])
   const [hiddenLayers, setHiddenLayers] = useState<Set<string>>(new Set())
   const [error, setError] = useState<string | null>(null)
+  const [style, setStyle] = useState<SvgStyle>('default')
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleGenerate = async () => {
@@ -27,7 +29,7 @@ export default function SvgEditor() {
       const res = await fetch('/api/svg/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({ prompt, style }),
       })
 
       if (!res.body) {
@@ -130,6 +132,8 @@ export default function SvgEditor() {
         onClear={handleClear}
         isGenerating={isGenerating}
         hasSvg={!!svgContent}
+        style={style}
+        onStyleChange={setStyle}
       />
       <input
         ref={fileInputRef}

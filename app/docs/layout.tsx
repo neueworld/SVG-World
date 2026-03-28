@@ -5,6 +5,7 @@ import Link from 'next/link'
 const NAV_ITEMS = [
   { href: '/docs', label: 'Overview' },
   { href: '/docs/wrld-01', label: 'WRLD-01 Model' },
+  { href: '/docs/changelog', label: 'Changelog' },
   { href: '/docs/api-keys', label: 'API Keys' },
   { href: '/docs/contributing', label: 'Contributing' },
 ]

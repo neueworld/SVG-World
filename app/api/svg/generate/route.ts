@@ -1,22 +1,27 @@
 import { NextRequest } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
-import { streamSvgFromClaude } from '@/lib/claude-svg'
+import { streamSvgFromClaude, type SvgStyle } from '@/lib/claude-svg'
 
 export const runtime = 'nodejs'
 
+const VALID_STYLES: SvgStyle[] = ['default', 'flat-icon', 'holographic']
+
 export async function POST(req: NextRequest) {
-  const { prompt } = await req.json()
+  const body = await req.json()
+  const { prompt, style } = body
 
   if (!prompt || typeof prompt !== 'string' || !prompt.trim()) {
     return new Response('Missing prompt', { status: 400 })
   }
+
+  const svgStyle: SvgStyle = VALID_STYLES.includes(style) ? style : 'default'
 
   const encoder = new TextEncoder()
 
   const stream = new ReadableStream({
     async start(controller) {
       try {
-        for await (const chunk of streamSvgFromClaude(prompt.trim())) {
+        for await (const chunk of streamSvgFromClaude(prompt.trim(), svgStyle)) {
           controller.enqueue(encoder.encode(`data: ${JSON.stringify(chunk)}\n\n`))
         }
         controller.enqueue(encoder.encode('data: [DONE]\n\n'))

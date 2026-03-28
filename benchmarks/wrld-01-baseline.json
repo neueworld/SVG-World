@@ -1,0 +1,100 @@
+{
+  "version": "WRLD-01",
+  "date": "2026-03-28",
+  "model": "claude-opus-4-6",
+  "description": "Baseline benchmark for WRLD-01. These prompts serve as quality anchors — run them against future model versions to measure improvement. Each entry records the style mode, complexity tier, and what quality dimension it tests.",
+  "styles": {
+    "default": "Rich gradients, editorial illustration style, atmospheric scenes",
+    "flat-icon": "Dark background, bold neon fills, pure vector, no gradients or blur",
+    "holographic": "Cream background, mesh gradients, 3D depth via radial highlights"
+  },
+  "prompts": [
+    {
+      "id": "flat-simple-01",
+      "style": "flat-icon",
+      "complexity": "simple",
+      "prompt": "a lightning bolt",
+      "tests": "Primary shape clarity, color choice, centering, minimal composition"
+    },
+    {
+      "id": "flat-simple-02",
+      "style": "flat-icon",
+      "complexity": "simple",
+      "prompt": "a diamond gem badge",
+      "tests": "Geometric precision, badge proportions, symbol-inside-shape legibility"
+    },
+    {
+      "id": "flat-medium-01",
+      "style": "flat-icon",
+      "complexity": "medium",
+      "prompt": "a space rocket launching with flames",
+      "tests": "Multi-element flat composition, fire/smoke as pure shapes, vertical energy"
+    },
+    {
+      "id": "flat-medium-02",
+      "style": "flat-icon",
+      "complexity": "medium",
+      "prompt": "a retro cassette tape with equalizer bars",
+      "tests": "Y2K aesthetic execution, fine detail at flat style, nostalgia palette"
+    },
+    {
+      "id": "holo-simple-01",
+      "style": "holographic",
+      "complexity": "simple",
+      "prompt": "a floating sphere with iridescent surface",
+      "tests": "3D illusion via gradients, highlight placement, ambient glow"
+    },
+    {
+      "id": "holo-simple-02",
+      "style": "holographic",
+      "complexity": "simple",
+      "prompt": "an abstract organic blob shape",
+      "tests": "Smooth bezier curves, mesh gradient transitions, fluid organic feel"
+    },
+    {
+      "id": "holo-medium-01",
+      "style": "holographic",
+      "complexity": "medium",
+      "prompt": "a glass pill capsule with colorful liquid inside",
+      "tests": "Transparency illusion, layered depth, refraction-style gradient"
+    },
+    {
+      "id": "holo-medium-02",
+      "style": "holographic",
+      "complexity": "medium",
+      "prompt": "a floating crystal cluster on a light background",
+      "tests": "Multi-facet gradients, editorial composition, premium feel"
+    },
+    {
+      "id": "default-simple-01",
+      "style": "default",
+      "complexity": "simple",
+      "prompt": "a mountain peak at golden hour",
+      "tests": "Atmospheric color, horizon depth, gradient sky"
+    },
+    {
+      "id": "default-medium-01",
+      "style": "default",
+      "complexity": "medium",
+      "prompt": "a coffee cup on a wooden desk with morning light coming through a window",
+      "tests": "Scene composition, light source consistency, material texture via gradients"
+    },
+    {
+      "id": "default-complex-01",
+      "style": "default",
+      "complexity": "complex",
+      "prompt": "a futuristic city skyline at night with neon reflections in rain puddles",
+      "tests": "Multi-layer complexity, reflection rendering, atmospheric depth, layer organization"
+    }
+  ],
+  "quality_dimensions": [
+    "color_harmony",
+    "composition",
+    "layer_structure",
+    "style_adherence",
+    "technical_correctness",
+    "visual_craft"
+  ],
+  "scoring_guide": "Score each dimension 1-5. A baseline WRLD-01 score is recorded here as a reference point for future WRLD-01.1+ improvements. Higher versions should show measurable gains in color_harmony and visual_craft first.",
+  "notes": "To regenerate benchmarks, run each prompt through /api/svg/generate with the specified style and save the SVG output alongside this file as wrld-01-outputs/. When releasing WRLD-01.1, add a wrld-011-baseline.json and include before/after comparisons in the changelog."
+}
