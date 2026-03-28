@@ -42,7 +42,6 @@ export default function SvgEditor() {
       while (true) {
         const { done, value } = await reader.read()
         if (done) break
-
         const lines = decoder.decode(value, { stream: true }).split('\n')
         for (const line of lines) {
           if (!line.startsWith('data: ')) continue
@@ -64,9 +63,7 @@ export default function SvgEditor() {
         }
       }
 
-      if (accumulated) {
-        setLayers(parseSvgLayers(accumulated))
-      }
+      if (accumulated) setLayers(parseSvgLayers(accumulated))
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unexpected error.')
     } finally {
@@ -114,7 +111,6 @@ export default function SvgEditor() {
   }
 
   const handleCopy = () => navigator.clipboard.writeText(svgContent)
-
   const handleClear = () => {
     setSvgContent('')
     setLayers([])
@@ -123,7 +119,7 @@ export default function SvgEditor() {
   }
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full bg-white">
       <SvgToolbar
         prompt={prompt}
         onPromptChange={setPrompt}
@@ -148,11 +144,7 @@ export default function SvgEditor() {
       />
       <div className="flex flex-1 overflow-hidden">
         {layers.length > 0 && (
-          <SvgLayerPanel
-            layers={layers}
-            hiddenLayers={hiddenLayers}
-            onToggle={toggleLayer}
-          />
+          <SvgLayerPanel layers={layers} hiddenLayers={hiddenLayers} onToggle={toggleLayer} />
         )}
         <SvgPreview
           svgContent={svgContent}

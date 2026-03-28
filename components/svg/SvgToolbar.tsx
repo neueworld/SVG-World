@@ -24,46 +24,47 @@ export default function SvgToolbar({
   hasSvg,
 }: Props) {
   return (
-    <div className="border-b border-gray-800 bg-gray-950 px-4 py-3 flex items-center gap-3 flex-shrink-0">
+    <div className="border-b border-gray-200 bg-white px-4 py-3 flex items-center gap-2.5 flex-shrink-0">
       <input
         type="text"
         value={prompt}
         onChange={(e) => onPromptChange(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && onGenerate()}
-        placeholder="Describe your SVG… e.g. a mountain landscape at sunset"
-        className="flex-1 bg-gray-800 text-gray-100 placeholder-gray-500 px-4 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+        placeholder="Describe your SVG… e.g. a glowing city skyline at night"
+        className="flex-1 bg-gray-100 hover:bg-gray-200 focus:bg-white text-gray-900 placeholder-gray-400 px-4 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 transition-colors border border-transparent focus:border-violet-300"
       />
       <button
         onClick={onGenerate}
         disabled={!prompt.trim() || isGenerating}
-        className="bg-purple-600 hover:bg-purple-500 disabled:bg-gray-700 disabled:text-gray-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
+        className="bg-violet-600 hover:bg-violet-700 disabled:bg-gray-200 disabled:text-gray-400 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
       >
         {isGenerating ? 'Generating…' : 'Generate'}
       </button>
       <button
         onClick={onVectorizeClick}
         disabled={isGenerating}
-        className="bg-gray-700 hover:bg-gray-600 disabled:opacity-50 text-gray-200 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
+        className="bg-gray-100 hover:bg-gray-200 disabled:opacity-50 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap border border-gray-200"
       >
         Vectorize
       </button>
       {hasSvg && (
         <>
+          <div className="w-px h-6 bg-gray-200" />
           <button
             onClick={onCopy}
-            className="bg-gray-700 hover:bg-gray-600 text-gray-200 px-3 py-2 rounded-lg text-sm transition-colors"
+            className="bg-gray-100 hover:bg-gray-200 text-gray-600 px-3 py-2 rounded-lg text-sm transition-colors border border-gray-200"
           >
             Copy
           </button>
           <button
             onClick={onDownload}
-            className="bg-gray-700 hover:bg-gray-600 text-gray-200 px-3 py-2 rounded-lg text-sm transition-colors"
+            className="bg-gray-100 hover:bg-gray-200 text-gray-600 px-3 py-2 rounded-lg text-sm transition-colors border border-gray-200"
           >
             Download
           </button>
           <button
             onClick={onClear}
-            className="bg-gray-700 hover:bg-gray-600 text-red-400 px-3 py-2 rounded-lg text-sm transition-colors"
+            className="bg-gray-100 hover:bg-gray-200 text-red-500 px-3 py-2 rounded-lg text-sm transition-colors border border-gray-200"
           >
             Clear
           </button>
